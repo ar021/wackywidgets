@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+    <link
+      rel="stylesheet"
       href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
       integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
       crossorigin="anonymous"
@@ -20,7 +25,7 @@
     <h3>No Widgets Exist</h3>
     {% else %}
 
-    <table class="striped">
+    <table class="pure-table pure-table-striped">
       <thead>
         <tr>
           <th>Description</th>
@@ -41,9 +46,10 @@
 
     {% endif %}
     <hr />
-    <form action="{% url 'add_widget' %}" method="post">
+    <h4>Add Widget</h4>
+    <form class="pure-form" action="{% url 'add_widget' %}" method="post">
       {% csrf_token %} {{ widget_form.as_p }}
-      <input type="submit" class="btn" value="Add Widget" />
+      <input type="submit" class="pure-button" value="Add Widget" />
     </form>
   </body>
 </html>
