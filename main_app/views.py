@@ -3,14 +3,17 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 from .models import Widget
 from .forms import WidgetForm
+from django.db.models import Sum
 
 
 
 # Define the home view
 def index(request):
     widgets = Widget.objects.all()
+    total = Widget.objects.all().aggregate(Sum('quantity'))
     widget_form = WidgetForm
-    return render(request, 'index.html', {'widgets' : widgets, 'widget_form' : widget_form })
+    return render(request, 'index.html', {'widgets' : widgets, 'widget_form' : widget_form,'total' : total })
+    # 
 
 def add_widget(request):
     form = WidgetForm(request.POST)
